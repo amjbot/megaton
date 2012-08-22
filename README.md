@@ -1,0 +1,4 @@
+megaton
+=======
+
+critical mass
