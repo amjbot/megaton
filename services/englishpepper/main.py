@@ -18,7 +18,7 @@ settings = dict(
 application = tornado.web.Application( [
     ( "^/",                          controllers.index         ),
     ( "^/privacy",                   controllers.privacy       ),
-    ( "^/lesson",                    controllers.lesson        ),
+    ( "^/lesson1",                   controllers.lesson1       ),
     ( ".*",                          controllers._404          ),
 ], **settings )
 
