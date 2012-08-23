@@ -8,6 +8,9 @@ import string
 import logging
 import sys
 import simplejson as json
+import subprocess
+import os
+import os.path
 
 
 db = tornado.database.Connection(host="localhost",user="root",database="englishpepper",password="root")
@@ -18,6 +21,9 @@ def external_resource( external_url ):
     ext_hash.update( external_url )
     ext_hash = ext_hash.hexdigest()
     internal_url = "/static/external/" + ext_hash
+    internal_path = os.path.join( os.path.dirname(__file__), internal_url[1:] )
+    if not os.path.exists( internal_path ):
+        subprocess.Popen(["curl",external_url,"-o",internal_path])
     return internal_url
 
 
