@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}English Pepper - Ideas Index{% end %}
+
+{% block content %}
+   {% include "_header.html" %}
+   <h2>Ideas Index</h2>
+   {% for i in ideas %}
+     <a href="/idea/{{ i.id }}">{{ i.text.capitalize() }}</a>
+   {% end %}
+   {% include "_footer.html" %}
+{% end %}

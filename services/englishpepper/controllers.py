@@ -13,27 +13,43 @@ import simplejson as json
 db = tornado.database.Connection(host="localhost",user="root",database="englishpepper",password="root")
 
 
-class BaseHandler( tornado.web.RequestHandler ):
-    pass
-
-
-class index( BaseHandler ):
+class index( tornado.web.RequestHandler ):
     def get( self ):
         self.render( "index.html" )
 
-class privacy( BaseHandler ):
+
+class privacy( tornado.web.RequestHandler ):
     def get( self ):
         self.render( "privacy.html" )
 
-class lesson1( BaseHandler ):
-    def get( self ):
-        noun = self.get_argument("noun",None)
-        if noun:
-            self.render( "lesson1.html", noun=noun )
-        else:
-            noun = db.get("SELECT * FROM ideas WHERE pos='noun' ORDER BY rand() LIMIT 1").text
-            self.redirect( "/lesson1?noun=" + tornado.escape.url_escape(noun) )
 
-class _404( BaseHandler ):
+class explore( tornado.web.RequestHandler ):
+    def get( self ):
+        pos = self.get_argument("pos", None)
+        lvl = self.get_argument("lvl", None)
+        idea = db.get("SELECT * FROM ideas WHERE (pos=%s OR %s IS NULL) AND (lvl=%s OR %s IS NULL) ORDER BY rand() LIMIT 1",
+                      pos, pos, lvl, lvl)
+        if idea:
+            self.redirect( "/idea/" + repr(idea.id) )
+        else:
+            raise tornado.web.HTTPError(404)
+
+
+class idea( tornado.web.RequestHandler ):
+    def get( self, id ):
+        idea = db.get("SELECT * FROM ideas WHERE id=%s", id)
+        if idea:
+            self.render( "idea.html", idea=idea )
+        else:
+            raise tornado.web.HTTPError(404)
+
+
+class ideas( tornado.web.RequestHandler ):
+    def get( self ):
+        ideas = db.query("SELECT * FROM ideas ORDER BY text")
+        self.render( "ideas.html", ideas=ideas )
+
+
+class _404( tornado.web.RequestHandler ):
     def get( self ):
         self.render( "404.html" )
