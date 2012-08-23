@@ -20,5 +20,5 @@ CREATE TABLE IF NOT EXISTS corpus (
     text VARBINARY(200) NOT NULL,
     pos VARBINARY(100) NOT NULL,
     n2 INT NOT NULL,
-    PRIMARY KEY(text,pos)
+    PRIMARY KEY(text,pos) USING BTREE
 );
