@@ -18,6 +18,7 @@ settings = dict(
 application = tornado.web.Application( [
     ( "^/",                          controllers.index         ),
     ( "^/privacy",                   controllers.privacy       ),
+    ( "^/contact",                   controllers.contact       ),
     ( "^/explore",                   controllers.explore       ),
     ( "^/idea/(?P<id>[0-9]+)",       controllers.idea          ),
     ( "^/ideas",                     controllers.ideas         ),

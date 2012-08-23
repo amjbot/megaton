@@ -23,6 +23,11 @@ class privacy( tornado.web.RequestHandler ):
         self.render( "privacy.html" )
 
 
+class contact( tornado.web.RequestHandler ):
+    def get( self ):
+        self.render( "contact.html" )
+
+
 class explore( tornado.web.RequestHandler ):
     def get( self ):
         pos = self.get_argument("pos", None)
