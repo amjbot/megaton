@@ -5,6 +5,6 @@
 <header>
   <a href="/">
     Today is the {{ now.day }}{{ nth[now.day%10] }} of {{ months[now.month] }}, {{ now.year }}.
-    The time is {{ now.hour }}:{{ now.minute }} UTC.
+    The time is {{ "%02d" % now.hour }}:{{ "%02d" % now.minute }} UTC.
   </a>
 </header>
