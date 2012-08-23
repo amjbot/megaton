@@ -929,10 +929,10 @@ n1	text	pos	n2	itext
 415	reproduced	vvn	275	NULL
 387	resolved	vvd	275	NULL
 397	joking	vvg	275	NULL
-341	flourish	vvi	275	NULL
 498	grinning	vvg	275	NULL
 358	complement	vvi	275	NULL
 465	flashed	vvd	275	NULL
+341	flourish	vvi	275	NULL
 823	sentenced	vvn	275	NULL
 361	wrapped	vvn	275	NULL
 394	sleep	vvb	274	NULL

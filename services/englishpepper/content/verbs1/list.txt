@@ -872,6 +872,7 @@ n1	text	pos	n2	itext
 647	relieve	vvi	459	NULL
 825	recognised	vvd	458	NULL
 1183	remove	vvb	458	NULL
+1084	ride	vvi	458	NULL
 822	compare	vvb	458	NULL
 664	confirms	vvz	458	NULL
 696	function	vvi	458	NULL
