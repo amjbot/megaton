@@ -9,9 +9,10 @@ CREATE TABLE IF NOT EXISTS ideas (
     pos ENUM('verb','noun','adjective','adverb','pronoun','preposition','conjunction','interjection') NOT NULL,
     lvl INT NOT NULL DEFAULT 0,
     text VARBINARY(300) NOT NULL,
-    image VARBINARY(500) NOT NULL DEFAULT '',
+    image VARBINARY(2000) NOT NULL DEFAULT '',
     definition VARBINARY(5000) NOT NULL DEFAULT '',
-    example VARBINARY(5000) NOT NULL DEFAULT ''
+    example VARBINARY(5000) NOT NULL DEFAULT '',
+    audio VARBINARY(2000) NOT NULL DEFAULT ''
 );
 
 DROP TABLE IF EXISTS corpus;

@@ -1,2 +1,2 @@
-id	wiki	pos	lvl	text	image	definition	example
-1000	http://en.wikipedia.org/wiki/Apple	noun	0	apple	http://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg	A common fruit.	The apple is red and juicy.
+id	wiki	pos	lvl	text	image	definition	example	audio
+2000	http://en.wikipedia.org/wiki/Apple	noun	2	apple	http://upload.wikimedia.org/wikipedia/commons/1/15/Red_Apple.jpg;http://upload.wikimedia.org/wikipedia/commons/d/d4/Apple_red_delicius_flower_end.jpg	A common fruit.	The apple is red and juicy.	http://upload.wikimedia.org/wikipedia/commons/9/9a/En-us-apple.ogg;http://upload.wikimedia.org/wikipedia/commons/c/c8/En-uk-apple.ogg
