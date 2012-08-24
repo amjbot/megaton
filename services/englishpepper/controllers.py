@@ -16,6 +16,11 @@ import os.path
 db = tornado.database.Connection(host="localhost",user="root",database="englishpepper",password="root")
 
 
+class resource:
+    __slots__ = ('internal_url','external_url')
+    def __init__( self, internal_url, external_url ):
+        self.internal_url = internal_url
+        self.external_url = external_url
 def external_resource( external_url ):
     ext_hash = md5.new()
     ext_hash.update( external_url )
@@ -24,7 +29,7 @@ def external_resource( external_url ):
     internal_path = os.path.join( os.path.dirname(__file__), internal_url[1:] )
     if not os.path.exists( internal_path ):
         subprocess.Popen(["curl",external_url,"-o",internal_path])
-    return internal_url
+    return resource(internal_url,external_url)
 
 
 class index( tornado.web.RequestHandler ):
@@ -60,7 +65,8 @@ class idea( tornado.web.RequestHandler ):
         lvl = None
         idea = db.get("SELECT * FROM ideas WHERE id=%s", id)
         if idea:
-            idea.image = external_resource(idea.image)
+            idea.image = map(external_resource,idea.image.split(';'))
+            idea.audio = map(external_resource,idea.audio.split(';'))
             self.render( "idea.html", idea=idea, pos=pos, lvl=lvl )
         else:
             raise tornado.web.HTTPError(404)

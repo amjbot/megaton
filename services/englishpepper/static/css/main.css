@@ -23,7 +23,7 @@ section > header { border-bottom: 3px groove #222222; }
 article { display: table; }
 time:before { content: "published: " }
 figure { float: left; margin-right: 15px; }
-img { width: 150px; }
+img { height: 150px; }
 
 
 .indent { margin-left: 60px }
