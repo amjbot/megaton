@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in *
+for i in /home/ubuntu/megaton/services/englishpepper/static/external/*
 do
    if [[ $(file $i | egrep "JPEG|PNG") ]]
    then
@@ -10,6 +10,5 @@ do
           convert "$i" -geometry 300x150 +profile '*' .tmpfile
           mv -f .tmpfile "$i"
        fi
-       #mv -f .tmpfile "$i"
    fi
 done
