@@ -32,6 +32,17 @@ def external_resource( external_url ):
     return resource(internal_url,external_url)
 
 
+class sitemap( tornado.web.RequestHandler ):
+    def get( self ):
+        ideas = db.query("select * from ideas")
+        loc = [ ("http://www.englishpepper.com/idea/"+str(i.id)) for i in ideas ]
+        loc.append( "http://www.englishpepper.com/" )
+        loc.append( "http://www.englishpepper.com/privacy" )
+        loc.append( "http://www.englishpepper.com/contact" )
+        loc.append( "http://www.englishpepper.com/ideas" )
+        self.render( "sitemap.xml", loc=loc )
+
+
 class index( tornado.web.RequestHandler ):
     def get( self ):
         self.render( "index.html" )
@@ -80,7 +91,3 @@ class ideas( tornado.web.RequestHandler ):
         ideas = db.query("SELECT id,text FROM ideas ORDER BY text")
         self.render( "ideas.html", ideas=ideas )
 
-
-class _404( tornado.web.RequestHandler ):
-    def get( self ):
-        self.render( "404.html" )
