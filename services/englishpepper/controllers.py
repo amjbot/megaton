@@ -54,7 +54,7 @@ class explore( tornado.web.RequestHandler ):
         idea = db.get("SELECT id FROM ideas WHERE (pos=%s OR %s IS NULL) AND (lvl=%s OR %s IS NULL) ORDER BY rand() LIMIT 1",
                       pos, pos, lvl, lvl)
         if idea:
-            self.redirect( "/idea/" + str(idea.id) )
+            self.redirect( "/idea/" + str(idea.id), status=303 )
         else:
             raise tornado.web.HTTPError(404)
 

@@ -4,7 +4,7 @@
 {% block content %}
   {% include "_header.html" %}
   <section>
-    <h2><a href="/explore"><img src="/static/img/recycle.svg" style="height: 20px; width: 20px"/></a> {{ idea.text }}</h2>
+    <h2><a href="/explore?source={{ idea.id }}"><img src="/static/img/recycle.svg" style="height: 20px; width: 20px"/></a> {{ idea.text }}</h2>
     <p>
       {% for i in idea.image %}
         <img src="{{ i.internal_url }}" title="{{ i.external_url }}"/>
