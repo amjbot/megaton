@@ -54,16 +54,19 @@ class explore( tornado.web.RequestHandler ):
         idea = db.get("SELECT id FROM ideas WHERE (pos=%s OR %s IS NULL) AND (lvl=%s OR %s IS NULL) ORDER BY rand() LIMIT 1",
                       pos, pos, lvl, lvl)
         if idea:
-            self.redirect( "/idea/" + str(idea.id), status=303 )
+            self.redirect( "/idea/" + str(idea.id) + "?" +
+                         (("&pos="+pos) if pos else "") + 
+                         (("&lvl="+lvl) if lvl else ""), status=303 )
         else:
             raise tornado.web.HTTPError(404)
 
 
 class idea( tornado.web.RequestHandler ):
     def get( self, id ):
-        pos = None
-        lvl = None
-        idea = db.get("SELECT * FROM ideas WHERE id=%s", id)
+        pos = self.get_argument("pos",None)
+        lvl = self.get_argument("lvl",None)
+        idea = db.get("SELECT * FROM ideas WHERE id=%s AND (pos=%s OR %s IS NULL) AND (lvl=%s or %s IS NULL)",
+                      id, pos, pos, lvl, lvl)
         if idea:
             idea.image = [ external_resource(i) for i in idea.image.split(';') if i ]
             idea.audio = [ external_resource(i) for i in idea.audio.split(';') if i ]
