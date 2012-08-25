@@ -6,8 +6,17 @@
   <section>
     <h2>
       <a href="/explore?source={{ idea.id }}{% if pos %}&pos={{ pos }}{% end %}{% if lvl %}&lvl={{ lvl }}{% end %}">
-      <img src="/static/img/recycle.svg" style="height: 20px; width: 20px"/></a> {{ idea.text }}
+        <img src="/static/img/recycle.svg" style="height: 20px; width: 20px"/>
+      </a> {{ idea.text }}
     </h2>
+    <p>
+    {% for a in idea.audio %}
+      <audio controls>
+        <source src="{{ a.internal_url }}" type="audio/ogg" />
+        Your browser does not support this audio format.
+      </audio>
+    {% end %}
+    </p>
     <p>
       {% for i in idea.image %}
         <img src="{{ i.internal_url }}" title="{{ i.external_url }}"/>
