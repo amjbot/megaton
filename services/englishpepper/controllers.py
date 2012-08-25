@@ -65,8 +65,8 @@ class idea( tornado.web.RequestHandler ):
         lvl = None
         idea = db.get("SELECT * FROM ideas WHERE id=%s", id)
         if idea:
-            idea.image = map(external_resource,idea.image.split(';'))
-            idea.audio = map(external_resource,idea.audio.split(';'))
+            idea.image = [ external_resource(i) for i in idea.image.split(';') if i ]
+            idea.audio = [ external_resource(i) for i in idea.audio.split(';') if i ]
             self.render( "idea.html", idea=idea, pos=pos, lvl=lvl )
         else:
             raise tornado.web.HTTPError(404)
